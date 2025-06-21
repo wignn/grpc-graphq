@@ -12,6 +12,12 @@ type AccountInput struct {
 	Password string `json:"password"`
 }
 
+type DeleteProductResponse struct {
+	DeletedID string  `json:"deletedId"`
+	Success   bool    `json:"success"`
+	Message   *string `json:"message,omitempty"`
+}
+
 type Mutation struct {
 }
 
@@ -20,6 +26,7 @@ type Order struct {
 	CreatedAt  time.Time         `json:"createdAt"`
 	TotalPrice float64           `json:"totalPrice"`
 	Products   []*OrderedProduct `json:"products"`
+	Status     string            `json:"status"`
 }
 
 type OrderInput struct {
@@ -61,4 +68,20 @@ type ProductInput struct {
 }
 
 type Query struct {
+}
+
+type Review struct {
+	ID        string    `json:"id"`
+	ProductID string    `json:"productId"`
+	AccountID string    `json:"accountId"`
+	Content   *string   `json:"content,omitempty"`
+	Rating    int       `json:"rating"`
+	CreatedAt time.Time `json:"createdAt"`
+}
+
+type ReviewInput struct {
+	ProductID string  `json:"productId"`
+	AccountID string  `json:"accountId"`
+	Content   *string `json:"content,omitempty"`
+	Rating    int     `json:"rating"`
 }
