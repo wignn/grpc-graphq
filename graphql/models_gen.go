@@ -18,6 +18,11 @@ type DeleteProductResponse struct {
 	Message   *string `json:"message,omitempty"`
 }
 
+type LoginInput struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 type Mutation struct {
 }
 
@@ -72,10 +77,10 @@ type Query struct {
 
 type Review struct {
 	ID        string    `json:"id"`
-	ProductID string    `json:"productId"`
-	AccountID string    `json:"accountId"`
 	Content   *string   `json:"content,omitempty"`
 	Rating    int       `json:"rating"`
+	Account   *Account  `json:"Account"`
+	Product   *Product  `json:"Product"`
 	CreatedAt time.Time `json:"createdAt"`
 }
 
@@ -84,4 +89,16 @@ type ReviewInput struct {
 	AccountID string  `json:"accountId"`
 	Content   *string `json:"content,omitempty"`
 	Rating    int     `json:"rating"`
+}
+
+type Token struct {
+	AccessToken  string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
+	ExpiresIn    int    `json:"expiresIn"`
+}
+
+type AuthResponse struct {
+	ID           string `json:"id"`
+	Email        string `json:"email"`
+	BackendToken *Token `json:"backendToken"`
 }

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net"
-
 	"github.com/wignn/micro-3/catalog/genproto"
 	"github.com/wignn/micro-3/catalog/model"
 	"github.com/wignn/micro-3/catalog/service"
@@ -50,6 +49,7 @@ func (s *grpcServer) GetProduct(c context.Context, r *genproto.GetProductRequest
 		log.Println(err)
 		return nil, err
 	}
+	
 	return &genproto.GetProductResponse{
 		Product: &genproto.Product{
 			Id:          p.ID,
